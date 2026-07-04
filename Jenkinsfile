@@ -42,12 +42,23 @@ pipeline {
             }
         }
 
-        stage('Scan Docker Image for Vulnerabilities') {
+        stage('Scan Docker Image main for Vulnerabilities') {
+            when {
+                branch 'main'
+            }
             steps {
                 script {
-                    def vulnerabilities = sh(script: "trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress ${registry}:${env.BUILD_ID}", returnStdout: true).trim()
-                    echo "Vulnerability Report:\n${vulnerabilities}"
-                }
+                    sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodemain:v1.0'
+            }
+        }
+
+        stage('Scan Docker Image dev for Vulnerabilities') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                script {
+                    sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodedev:v1.0'
             }
         }
 
