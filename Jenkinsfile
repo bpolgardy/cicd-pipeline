@@ -2,14 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('test') {
+        
+        stage('Build') {
             steps {
-                // Display info about context
-
                 sh '''
-                   echo "BRANCH_NAME=$BRANCH_NAME"
-                   echo "JOB_NAME=$JOB_NAME"
-                   echo "WORKSPACE=$WORKSPACE"
+                   npm install
+                   npm run build
                    '''
             }
         }
