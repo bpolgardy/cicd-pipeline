@@ -2,12 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('checkout') {
+        stage('test') {
             steps {
-                // Get code from GitHub repository
-                git 'https://github.com/bpolgardy/cicd-pipeline.git'
+                // Display info about context
 
-                sh 'echo "Checkout done."'
+                sh '''
+                   git branch --show-current
+                   whoami
+                   pwd
+                   ls -la
+                '''
             }
 
         }
