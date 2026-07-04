@@ -3,6 +3,9 @@ pipeline {
 
     stages {
         stage('test') {
+            when {
+                branch 'main'
+            }
             steps {
                 // Display info about context
 
@@ -10,12 +13,20 @@ pipeline {
                    echo "BRANCH_NAME=$BRANCH_NAME"
                    echo "JOB_NAME=$JOB_NAME"
                    echo "WORKSPACE=$WORKSPACE"
-                   whoami
-                   pwd
-                   ls -la
                    '''
             }
+            when {
+                branch 'dev'
+            }
+            steps {
+                // Display info about context
 
+                sh '''
+                   echo "BRANCH_NAME=$BRANCH_NAME"
+                   echo "JOB_NAME=$JOB_NAME"
+                   echo "WORKSPACE=$WORKSPACE"
+                   '''
+            }
         }
     }
 }
