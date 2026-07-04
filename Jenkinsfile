@@ -48,6 +48,7 @@ pipeline {
             }
             steps {
                  sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodemain:v1.0'
+            }
         }
 
         stage('Scan Docker Image dev for Vulnerabilities') {
@@ -56,6 +57,7 @@ pipeline {
             }
             steps {
                  sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodedev:v1.0'
+            }
         }
 
         stage('Deploy main') {
