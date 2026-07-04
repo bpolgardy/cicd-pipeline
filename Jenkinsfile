@@ -7,11 +7,13 @@ pipeline {
                 // Display info about context
 
                 sh '''
-                   git branch --show-current
+                   echo "BRANCH_NAME=$BRANCH_NAME"
+                   echo "JOB_NAME=$JOB_NAME"
+                   echo "WORKSPACE=$WORKSPACE"
                    whoami
                    pwd
                    ls -la
-                '''
+                   '''
             }
 
         }
