@@ -12,6 +12,12 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                sh 'CI=true npm test'
+            }
+        }
+
         stage('Docker build main') {
             when {
                 branch 'main'
