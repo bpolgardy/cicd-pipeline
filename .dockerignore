@@ -1,0 +1,18 @@
+# Git metadata
+.git
+.gitignore
+
+# Local dependencies and build output
+node_modules
+build
+
+# OS/editor junk
+.DS_Store
+**/.DS_Store
+
+# Local logs / copied Jenkins console outputs
+*.log
+\#*.txt
+
+# Jenkins pipeline file is not needed inside the app image
+Jenkinsfile
