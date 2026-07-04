@@ -19,7 +19,10 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh 'echo "build nodemain:v1.0"'
+                sh '''
+		   echo "building nodemain:v1.0..."
+                   docker build -t nodemain:v1.0 .
+                   '''
             }
         }
 
@@ -28,7 +31,10 @@ pipeline {
                 branch 'dev'
             }
             steps {
-                sh 'echo "build nodedev:v1.0"'
+                sh '''
+                   echo "building nodedev:v1.0..."
+                   docker build -t nodedev:v1.0 .
+                   '''
             }
         }
     }
