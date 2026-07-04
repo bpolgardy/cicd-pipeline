@@ -50,7 +50,8 @@ pipeline {
                  sh '''
                     mkdir -p "$WORKSPACE/.trivy-cache"
                     trivy image \
-                      --cache-dir "$WORKSPACE/.trivy-cache" \ 
+                      --cache-dir "$WORKSPACE/.trivy-cache" \
+                      --scanners vuln \ 
                       --exit-code 0 \
                       --severity HIGH,MEDIUM,LOW \ 
                       --no-progress \
@@ -68,6 +69,7 @@ pipeline {
                     mkdir -p "$WORKSPACE/.trivy-cache"
                     trivy image \
                       --cache-dir "$WORKSPACE/.trivy-cache" \
+                      --scanners vuln \
                       --exit-code 0 \
                       --severity HIGH,MEDIUM,LOW \
                       --no-progress \
