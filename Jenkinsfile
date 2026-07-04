@@ -47,9 +47,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                script {
-                    sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodemain:v1.0'
-            }
+                 sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodemain:v1.0'
         }
 
         stage('Scan Docker Image dev for Vulnerabilities') {
@@ -57,9 +55,7 @@ pipeline {
                 branch 'dev'
             }
             steps {
-                script {
-                    sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodedev:v1.0'
-            }
+                 sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodedev:v1.0'
         }
 
         stage('Deploy main') {
