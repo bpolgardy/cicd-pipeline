@@ -49,13 +49,7 @@ pipeline {
             steps {
                  sh '''
                     mkdir -p "$WORKSPACE/.trivy-cache"
-                    trivy image \
-                      --cache-dir "$WORKSPACE/.trivy-cache" \
-                      --scanners vuln \ 
-                      --exit-code 0 \
-                      --severity HIGH,MEDIUM,LOW \ 
-                      --no-progress \
-                      nodemain:v1.0
+                    trivy image --cache-dir "$WORKSPACE/.trivy-cache" --scanners vuln --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodemain:v1.0
                     '''
             }
         }
@@ -67,13 +61,7 @@ pipeline {
             steps {
                  sh '''
                     mkdir -p "$WORKSPACE/.trivy-cache"
-                    trivy image \
-                      --cache-dir "$WORKSPACE/.trivy-cache" \
-                      --scanners vuln \
-                      --exit-code 0 \
-                      --severity HIGH,MEDIUM,LOW \
-                      --no-progress \
-                      nodedev:v1.0
+                    trivy image --cache-dir "$WORKSPACE/.trivy-cache" --scanners vuln --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodedev:v1.0
                     '''
             }
         }
