@@ -47,7 +47,10 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodemain:v1.0'
+                sh '''
+                   mkdir -p "$WORKSPACE/.trivy-cache"
+                   trivy image --cache-dir "$WORKSPACE/.trivy-cache" --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodemain:v1.0
+                   '''
             }
         }
 
@@ -56,7 +59,10 @@ pipeline {
                 branch 'dev'
             }
             steps {
-                sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodedev:v1.0'
+                sh '''
+                   mkdir -p "$WORKSPACE/.trivy-cache"
+                   trivy image --cache-dir "$WORKSPACE/.trivy-cache" --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress nodedev:v1.0
+                   '''
             }
         }
 
