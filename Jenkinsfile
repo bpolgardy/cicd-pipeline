@@ -37,5 +37,30 @@ pipeline {
                    '''
             }
         }
+
+        stage('Deploy main') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh '''
+                   echo "deploying nodemain:v1.0..."
+                   docker run -d --name main-container -p 3000:3000 nodemain:v1.0
+                   '''
+            }
+        }
+
+        stage('Deploy dev') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                sh '''
+                   echo "deploying nodedev:v1.0..."
+                   docker run -d --name dev-container -p 3001:3000 nodedev:v1.0
+                   '''
+            }
+        }
+
     }
 }
