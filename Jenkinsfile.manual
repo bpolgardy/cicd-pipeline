@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Check images exists') {
+            steps {
+                sh 'docker images'
+            }
+        }
+    }
+}
