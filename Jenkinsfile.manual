@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(
+            name: 'TARGET_ENV',
+            choices: ['main', 'dev'],
+            description: 'Choose which environment to deploy'
+        )
+    }
+
     stages {
         stage('Check images exists') {
             steps {
