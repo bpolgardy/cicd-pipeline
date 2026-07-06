@@ -12,7 +12,14 @@ pipeline {
     stages {
         stage('Check images exists') {
             steps {
-                sh 'docker images'
+                script {
+                    if (params.TARGET_ENV == 'main') {
+                        sh 'echo "Environment main selected"'
+                    }
+                    else if (params.TARGET_ENV == 'dev') {
+                        sh 'echo "Environment dev selected"'
+                    }
+                }
             }
         }
     }
