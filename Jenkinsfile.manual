@@ -10,7 +10,7 @@ pipeline {
     }
 
     stages {
-        stage('Check images exists') {
+        stage('Deploy image') {
             steps {
                 script {
                     if (params.TARGET_ENV == 'main') {
