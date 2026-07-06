@@ -16,10 +16,14 @@ pipeline {
                     if (params.TARGET_ENV == 'main') {
                         sh 'docker image inspect nodemain:v1.0'
                         sh 'docker rm -f main-container || true'
+                        sh 'echo "deploying nodemain:v1.0..."'
+                        sh 'docker run -d --name main-container -p 3000:3000 nodemain:v1.0'
                     }
                     else if (params.TARGET_ENV == 'dev') {
                         sh 'docker image inspect nodedev:v1.0'
                         sh 'docker rm -f dev-container || true'
+                        sh 'echo "deploying nodedev:v1.0..."'
+                        sh 'docker run -d --name dev-container -p 3001:3000 nodedev:v1.0'
                     }
                 }
             }
