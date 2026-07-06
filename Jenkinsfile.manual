@@ -14,10 +14,10 @@ pipeline {
             steps {
                 script {
                     if (params.TARGET_ENV == 'main') {
-                        sh 'docker inspect image nodemain:v1.0'
+                        sh 'docker image inspect nodemain:v1.0'
                     }
                     else if (params.TARGET_ENV == 'dev') {
-                        sh 'docker inspect image nodedev:v1.0'
+                        sh 'docker image inspect nodedev:v1.0'
                     }
                 }
             }
